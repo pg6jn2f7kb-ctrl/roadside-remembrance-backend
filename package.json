@@ -2,6 +2,9 @@
   "name": "roadside-remembrance-backend",
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+  "node": "18.x"
+},
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -11,4 +14,5 @@
     "express": "^4.18.2",
     "pg": "^8.11.1"
   }
+
 }
