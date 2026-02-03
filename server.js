@@ -1,8 +1,6 @@
-import express from "express";
-import pkg from "pg";
-import cors from "cors";
-
-const { Pool } = pkg;
+const express = require("express");
+const { Pool } = require("pg");
+const cors = require("cors");
 
 const app = express();
 app.use(cors());
@@ -10,6 +8,7 @@ app.use(express.json());
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 // Test route
@@ -42,8 +41,8 @@ app.post("/api/submissions", async (req, res) => {
 
   await pool.query(
     `INSERT INTO submissions 
-    (full_name, province, latitude, longitude, life_summary, photo_url, obituary_url, accident_type, submitter_name, submitter_email)
-    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+     (full_name, province, latitude, longitude, life_summary, photo_url, obituary_url, accident_type, submitter_name, submitter_email)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
     [
       full_name,
       province,
